@@ -1,8 +1,11 @@
 package com.ps;
 
 public class MyMain {
+    static int counter = 0;
+
     public static void main(String[] args) {
-        System.out.println("Trigger");
+//        System.out.println("Trigger");
+        boolean bool;
 
         // Data types
 
@@ -53,6 +56,46 @@ public class MyMain {
 
         // String
         String stringy = "Gregorio";
+//        Order of operations
 
+//        Parentheses
+
+//        Exponents
+
+//        Multi
+//        Div
+
+//        Add
+//        Sub
+//
+//        int num = 0;
+//
+//        System.out.println(num--);
+//        System.out.println(num);
+
+//        short shortNum = 10;
+//        long longNum;
+//        longNum = shortNum;
+
+//        long longNum = 10;
+//        short shortNum;
+//        shortNum = (short)longNum; // Casting
+
+        String word1 = "Hello";
+        String word2 = "World";
+
+        System.out.println("My secret passphrase is: " + word1 + " " + word2 + " %s. And it is awesome!");
+
+        String message = String.format("My secret passphrase is: %s %s. And it is awesome!", word1, word2);
+        System.out.println(message);
+        System.out.printf("My secret passphrase is: %s %s. And it is awesome!", word1, word2);
+
+
+    }
+
+    public int add(int num1, int num2) {
+        int sum;
+        sum = num1 + num2;
+        return sum;
     }
 }
