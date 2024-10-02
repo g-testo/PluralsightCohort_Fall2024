@@ -8,6 +8,8 @@ public class Cellphone {
     private String phoneNumber;
     private String owner;
 
+    public Cellphone(){};
+
     // Constructor methods
     public Cellphone(int serialNumber, String model, String carrier, String phoneNumber, String owner) {
         this.serialNumber = serialNumber;
@@ -57,6 +59,15 @@ public class Cellphone {
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
+    public void dial(String number){
+        System.out.println("Calling: " + number + "\n From:" + this.phoneNumber);
+    }
+
+    public void dial(String number1, String number2){
+
+    }
+
 
     @Override
     public String toString() {

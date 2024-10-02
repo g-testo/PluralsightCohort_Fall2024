@@ -22,6 +22,8 @@ public class Main {
         System.out.print("What is the serial number?");
         int serialNumber = scanner.nextInt();
 
+        scanner.nextLine();
+
         System.out.print("What model is the phone?");
         String model = scanner.nextLine();
 
@@ -36,7 +38,9 @@ public class Main {
 
         Cellphone cellphone = new Cellphone(serialNumber, model, phoneNumber, owner, carrier);
 
-        System.out.println(cellphone.getOwner());
+        System.out.println(cellphone);
+
+        Cellphone cellphone2 = new Cellphone();
 
     }
 }
