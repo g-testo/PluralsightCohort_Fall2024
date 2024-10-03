@@ -33,6 +33,9 @@ public class Main {
                 case 4:
                     div();
                     break;
+                case 0:
+                    System.out.println("Exiting...");
+                    break;
                 default:
                     System.out.println("Command not found! Please try again");
             }
