@@ -63,6 +63,7 @@ public class Vehicle {
                 ", color='" + color + '\'' +
                 ", odometerReading=" + odometerReading +
                 ", price=" + price +
+
                 '}';
     }
 }

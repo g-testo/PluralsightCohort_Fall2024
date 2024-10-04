@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static Vehicle[] inventory = new Vehicle[20];
+    static int currentNumberOfVehicles = 0;
 
     public static void main(String[] args) {
         Vehicle vehicle1 = new Vehicle(101122, "Honda Civic", "Blue", 32000, 12000);
@@ -20,6 +21,7 @@ public class Main {
         inventory[3] = vehicle4;
         inventory[4] = vehicle5;
         inventory[5] = vehicle6;
+        currentNumberOfVehicles = 6;
 
         int mainMenuCommand;
 
@@ -41,14 +43,19 @@ public class Main {
                     listAllVehicles();
                     break;
                 case 2:
+                    searchByMakeModel();
                     break;
                 case 3:
+                    searchByPriceRange();
                     break;
                 case 4:
+                    searchByColor();
                     break;
                 case 5:
+                    addAVehicle();
                     break;
                 case 6:
+                    System.out.println("Exiting...");
                     break;
                 default:
                     System.out.println("Command not found! Try again");
@@ -62,6 +69,41 @@ public class Main {
     }
 
     public static void listAllVehicles(){
-
+        for(Vehicle vehicle: inventory){
+            if(vehicle != null){
+                System.out.println(vehicle);
+            }
+        }
     }
+    public static void searchByMakeModel(){
+        System.out.println("What (make model) are you looking for?");
+        String makeModel = scanner.nextLine().trim();
+
+        for(Vehicle vehicle: inventory){
+            boolean isMatchMakeModel = vehicle.getMakeModel().equalsIgnoreCase(makeModel);
+            if(vehicle != null && isMatchMakeModel){
+                System.out.println(vehicle);
+            }
+        }
+    }
+
+    public static void searchByPriceRange(){
+        System.out.println("What price range are you looking for?");
+
+        System.out.print("Min: ");
+        float minPrice = scanner.nextFloat();
+
+        System.out.print("Max: ");
+        float maxPrice = scanner.nextFloat();
+
+        for(Vehicle vehicle: inventory){
+            boolean isVehicleInRange = (vehicle.getPrice() > minPrice) && (vehicle.getPrice() < maxPrice);
+            if(vehicle != null && isVehicleInRange){
+                System.out.println(vehicle);
+            }
+        }
+    }
+    public static void searchByColor(){}
+    public static void addAVehicle(){}
+
 }
