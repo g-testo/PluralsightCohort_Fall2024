@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static Vehicle[] inventory = new Vehicle[20];
-    static int currentNumberOfVehicles = 0;
+    static int nextEmptyIndex = 0;
 
     public static void main(String[] args) {
         Vehicle vehicle1 = new Vehicle(101122, "Honda Civic", "Blue", 32000, 12000);
@@ -21,11 +21,11 @@ public class Main {
         inventory[3] = vehicle4;
         inventory[4] = vehicle5;
         inventory[5] = vehicle6;
-        currentNumberOfVehicles = 6;
+        nextEmptyIndex = 6;
 
         int mainMenuCommand;
 
-        do{
+        do {
             System.out.println("What do you want to do?");
             System.out.println("1 - List all vehicles");
             System.out.println("2 - Search by make/model");
@@ -38,7 +38,7 @@ public class Main {
 
             mainMenuCommand = scanner.nextInt();
 
-            switch(mainMenuCommand){
+            switch (mainMenuCommand) {
                 case 1:
                     listAllVehicles();
                     break;
@@ -62,32 +62,31 @@ public class Main {
                     break;
             }
 
-        } while(mainMenuCommand != 6);
-
-
+        } while (mainMenuCommand != 6);
 
     }
 
-    public static void listAllVehicles(){
-        for(Vehicle vehicle: inventory){
-            if(vehicle != null){
+    public static void listAllVehicles() {
+        for (Vehicle vehicle : inventory) {
+            if (vehicle != null) {
                 System.out.println(vehicle);
             }
         }
     }
-    public static void searchByMakeModel(){
+
+    public static void searchByMakeModel() {
         System.out.println("What (make model) are you looking for?");
         String makeModel = scanner.nextLine().trim();
 
-        for(Vehicle vehicle: inventory){
-            boolean isMatchMakeModel = vehicle.getMakeModel().equalsIgnoreCase(makeModel);
-            if(vehicle != null && isMatchMakeModel){
+        for (Vehicle vehicle : inventory) {
+            boolean doesMatchMakeModel = vehicle.getMakeModel().equalsIgnoreCase(makeModel);
+            if (vehicle != null && doesMatchMakeModel) {
                 System.out.println(vehicle);
             }
         }
     }
 
-    public static void searchByPriceRange(){
+    public static void searchByPriceRange() {
         System.out.println("What price range are you looking for?");
 
         System.out.print("Min: ");
@@ -96,14 +95,49 @@ public class Main {
         System.out.print("Max: ");
         float maxPrice = scanner.nextFloat();
 
-        for(Vehicle vehicle: inventory){
+        for (Vehicle vehicle : inventory) {
             boolean isVehicleInRange = (vehicle.getPrice() > minPrice) && (vehicle.getPrice() < maxPrice);
-            if(vehicle != null && isVehicleInRange){
+            if (vehicle != null && isVehicleInRange) {
                 System.out.println(vehicle);
             }
         }
     }
-    public static void searchByColor(){}
-    public static void addAVehicle(){}
+
+    public static void searchByColor() {
+        System.out.println("What color are you looking for?");
+        String color = scanner.nextLine().trim();
+
+        for (Vehicle vehicle : inventory) {
+            boolean doesMatchColor = vehicle.getColor().equalsIgnoreCase(color);
+            if (vehicle != null && doesMatchColor) {
+                System.out.println(vehicle);
+            }
+        }
+    }
+
+    public static void addAVehicle() {
+        System.out.println("Please provide vehicle details");
+        System.out.print("Vehicle ID: ");
+        long vin = scanner.nextLong();
+
+        scanner.nextLine();
+
+        System.out.print("Make Model: ");
+        String makeModel = scanner.nextLine().trim();
+
+        System.out.print("Color: ");
+        String color = scanner.nextLine().trim();
+
+        System.out.print("Odometer Reading: ");
+        int odometer = scanner.nextInt();
+
+        System.out.print("Price: ");
+        float price = scanner.nextFloat();
+        // [1, 2, 3, 4, 5, 6, 7] - 6
+        // 0 1 2 3 4 5 6 _
+
+        inventory[nextEmptyIndex] = new Vehicle(vin, makeModel, color, odometer, price);
+        nextEmptyIndex++;
+    }
 
 }
