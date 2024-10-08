@@ -1,5 +1,6 @@
 package com.ps;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -24,7 +25,12 @@ public class Main {
 
             // Import Scanner, create instance of scanner as a class variable
             // Use scanner to store the users command input into a variable ()
-            mainMenuCommand = commandScanner.nextInt();
+            try {
+                mainMenuCommand = commandScanner.nextInt();
+            } catch(InputMismatchException ime){
+//                ime.printStackTrace();
+                mainMenuCommand = 0;
+            }
 
             // switch statement to match the user command to the provided cases
             switch (mainMenuCommand){
