@@ -12,3 +12,39 @@
 ### create static methods that match the corresponding command
 ### Create code for each static method
 ### Handle incorrect commands
+
+/////////////
+
+    // Have the ability to:
+    // - Add an animal from the CLI
+    //      - Write the animal to a file *
+    
+    // - Display all animals
+    // - Display all publicly available animals
+    // - Search for an animal by name
+    // - Search by location *
+
+
+/////////
+
+        // Create a class Animal
+        // Properties:
+            // String name
+            // String type
+            // int age
+            // String origin
+            // boolean isPubliclyAvailable
+
+        // Keep track of all of the animals at a zoo
+        // Load initial animals from a file *
+
+        // ******** Home ********
+        // Add animal
+        // Display Animals
+            // All
+            // Publicly Available Animals
+            // Search Animal By Name
+            // Search by type
+            // Search by age range
+            // Search origin
+        // Exit

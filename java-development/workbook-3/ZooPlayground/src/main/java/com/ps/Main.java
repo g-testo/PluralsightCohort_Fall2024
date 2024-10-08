@@ -3,30 +3,10 @@ package com.ps;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner commandScanner = new Scanner(System.in);
+    static Scanner inputScanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-
-        // Create a class Animal
-        // Properties:
-            // String name
-            // String type
-            // int age
-            // String origin
-            // boolean isPubliclyAvailable
-
-        // Keep track of all of the animals at a zoo
-        // Load initial animals from a file *
-
-        // ******** Home ********
-        // Add animal
-        // Display Animals
-            // All
-            // Publicly Available Animals
-            // Search Animal By Name
-            // Search by type
-            // Search by age range
-            // Search origin
-        // Exit
 
         // ***** BEGIN Create menu Instructions *****
 
@@ -44,7 +24,7 @@ public class Main {
 
             // Import Scanner, create instance of scanner as a class variable
             // Use scanner to store the users command input into a variable ()
-            mainMenuCommand = scanner.nextInt();
+            mainMenuCommand = commandScanner.nextInt();
 
             // switch statement to match the user command to the provided cases
             switch (mainMenuCommand){
@@ -66,20 +46,7 @@ public class Main {
 
         } while(mainMenuCommand != 0);
 
-
-
-
         // ***** END Create menu Instructions *****
-
-
-        // Have the ability to:
-        // - Add an animal from the CLI
-        //      - Write the animal to a file *
-
-        // - Display all animals
-        // - Display all publicly available animals
-        // - Search for an animal by name
-        // - Search by location *
 
     }
 
@@ -89,6 +56,77 @@ public class Main {
     }
 
     public static void displaySubMenu(){
+        // Initialize variable to store command
+        int subMenuCommand;
+
+        // Create do while loop
+        do{
+            // display the sub menu options
+            System.out.println("Please enter an option: ");
+            System.out.println("1) Display All");
+            System.out.println("2) Display publicly available");
+            System.out.println("3) Search by name");
+            System.out.println("4) Search by type");
+            System.out.println("5) Search by age range");
+            System.out.println("6) Search by origin");
+
+            System.out.println("0) Back");
+            System.out.print("Command: ");
+
+            // Get input from user
+            subMenuCommand = commandScanner.nextInt();
+
+            // switch statement to trigger according static methods
+            switch(subMenuCommand){
+                case 1:
+                    displayAll();
+                    break;
+                case 2:
+                    displayPubliclyAvailable();
+                    break;
+                case 3:
+                    searchByName();
+                    break;
+                case 4:
+                    searchByType();
+                    break;
+                case 5:
+                    searchByAgeRange();
+                    break;
+                case 6:
+                    searchByOrigin();
+                    break;
+                case 0:
+                    System.out.println("Going back to the main menu...");
+                    break;
+                default:
+                    System.out.println("Command not found. Try again");
+            }
+
+        } while(subMenuCommand != 0);
 
     }
+
+    public static void displayAll(){
+        System.out.println("Placeholder: Display All");
+    }
+    public static void displayPubliclyAvailable(){
+        System.out.println("Placeholder: Display publicly available");
+    }
+
+    public static void searchByName(){
+        System.out.println("Placeholder: Search by name");
+    }
+
+    public static void searchByType(){
+        System.out.println("Placeholder: Search by type");
+    }
+    public static void searchByAgeRange(){
+        System.out.println("Placeholder: Search by age range");
+    }
+
+    public static void searchByOrigin(){
+        System.out.println("Placeholder: Search by origin");
+    }
+
 }
