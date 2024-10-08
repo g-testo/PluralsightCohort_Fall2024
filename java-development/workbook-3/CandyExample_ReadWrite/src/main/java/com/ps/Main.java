@@ -1,5 +1,8 @@
 package com.ps;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class Main {
     static Candy[] inventory = new Candy[100];
     public static void main(String[] args) {
@@ -21,6 +24,11 @@ public class Main {
             // Create a file with initial inventory
 
             // Read candy from file
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("candies.csv"));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
             // Loop every line of candy
                 // add each piece of candy to the inventory variable
 
