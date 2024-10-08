@@ -6,6 +6,7 @@ public class Vehicle {
     private String color;
     private int odometerReading;
     private float price;
+    private int year;
 
     public Vehicle(long vehicleId, String makeModel, String color, int odometerReading, float price) {
         this.vehicleId = vehicleId;
