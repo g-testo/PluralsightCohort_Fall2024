@@ -2,10 +2,11 @@ package com.ps;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    static Candy[] inventory = new Candy[100];
+    static ArrayList<Candy> inventory = new ArrayList<>();
     public static void main(String[] args) {
         // Do we understand the problem?
             // Creating an app to keep track of candy in a store
@@ -45,7 +46,7 @@ public class Main {
                 Candy candy = new Candy(name, price, flavor, quantity);
 
                 // add each piece of candy to the inventory variable
-                inventory[currentIndex] = candy;
+                inventory.add(candy);
                 currentIndex++;
             }
 

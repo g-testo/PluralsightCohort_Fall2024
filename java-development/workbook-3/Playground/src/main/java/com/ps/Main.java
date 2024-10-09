@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
 
@@ -36,16 +40,28 @@ public class Main {
 //        }
 
 
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("test.txt", true));
+//        try {
+//            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("test.txt", true));
+//
+//            bufferedWriter.write("Hello\n");
+//            bufferedWriter.write("World");
+//
+//            bufferedWriter.close();
+//
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
 
-            bufferedWriter.write("Hello\n");
-            bufferedWriter.write("World");
+//        LocalDateTime today = LocalDateTime.now();
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MM-dd-yy");
+        LocalDate yesterday = LocalDate.parse("10-08-24", format);
 
-            bufferedWriter.close();
+        System.out.println(yesterday.getDayOfWeek());
 
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+//        System.out.println(today.toEpochSecond(ZoneOffset.UTC));
+
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("E, MMM dd, yyyy");
+//
+//        System.out.println(today.format(dtf));
     }
 }
