@@ -26,6 +26,8 @@ public class Main {
             // Create a file with initial inventory
 
             // Read candy from file
+
+
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("candies.csv"));
             // Read the header line
