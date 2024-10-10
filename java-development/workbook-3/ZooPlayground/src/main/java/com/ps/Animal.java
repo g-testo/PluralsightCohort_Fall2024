@@ -61,12 +61,6 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", age=" + age +
-                ", origin='" + origin + '\'' +
-                ", isPubliclyAvailable=" + isPubliclyAvailable +
-                '}';
+        return String.format("Name: %s, Type: %s, Age: %d, Origin: %s, Publicly Available: %b", name, type, age, origin, isPubliclyAvailable);
     }
 }
