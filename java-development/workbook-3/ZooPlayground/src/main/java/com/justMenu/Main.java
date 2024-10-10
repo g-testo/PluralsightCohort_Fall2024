@@ -1,6 +1,5 @@
-package com.ps;
+package com.justMenu;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,10 +7,7 @@ public class Main {
     static Scanner commandScanner = new Scanner(System.in);
     static Scanner inputScanner = new Scanner(System.in);
 
-    static ArrayList<Animal> allAnimalsInZoo = new ArrayList<>();
-
     public static void main(String[] args) {
-        loadAnimals();
 
         // ***** BEGIN Create menu Instructions *****
 
@@ -58,11 +54,6 @@ public class Main {
 
         // ***** END Create menu Instructions *****
 
-    }
-
-    public static void loadAnimals(){
-        Animal animal1 = new Animal("Leo", "Lion", 8, "Americas", true);
-        allAnimalsInZoo.add(animal1);
     }
 
     public static void addAnimal(){

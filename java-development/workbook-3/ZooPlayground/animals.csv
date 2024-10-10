@@ -1,0 +1,12 @@
+name|type|age|origin|isPubliclyAvailable
+Leo|Lion|8|Americas|true
+Tiger|Tiger|6|Asia|true
+Benny|Bear|10|Europe|false
+Simba|Lion|7|Africa|true
+Panda|Bear|5|Asia|true
+Juno|Jaguar|12|South America|false
+Ollie|Otter|4|North America|true
+Toby|Tortoise|100|Galapagos|false
+Coco|Monkey|3|Africa|true
+Ella|Elephant|25|Asia|false
+Rex|Wolf|9|Europe|true
