@@ -1,9 +1,14 @@
 package com.ps;
 
+import javax.swing.text.DateFormatter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -78,8 +83,10 @@ public class Main {
                 int age = Integer.parseInt(animalArr[2]); // "8" >> 8
                 String origin = animalArr[3];
                 boolean isPubliclyAvailable = Boolean.parseBoolean(animalArr[4]);
+                String dateOfArrival = animalArr[5];
+                String timeOfArrival = animalArr[6];
 
-                allAnimalsInZoo.add(new Animal(name, type, age, origin, isPubliclyAvailable));
+                allAnimalsInZoo.add(new Animal(name, type, age, origin, isPubliclyAvailable, dateOfArrival, timeOfArrival));
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -110,17 +117,26 @@ public class Main {
         System.out.print("Is publicly available: ");
         boolean isPubliclyAvailable = inputScanner.nextBoolean();
 
-        Animal animal = new Animal(name, type, age, origin, isPubliclyAvailable);
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+
+        String formattedDate = currentDateTime.format(dateFormatter);
+        String formattedTime = currentDateTime.format(timeFormatter);
+
+        Animal animal = new Animal(name, type, age, origin, isPubliclyAvailable, formattedDate, formattedTime);
         allAnimalsInZoo.add(animal);
 
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("animals.csv", true));
-            bufferedWriter.write(String.format("\n%s|%s|%d|%s|%b",
+            bufferedWriter.write(String.format("\n%s|%s|%d|%s|%b|%s|%s",
                     animal.getName(),
                     animal.getType(),
                     animal.getAge(),
                     animal.getOrigin(),
-                    animal.isPubliclyAvailable()
+                    animal.isPubliclyAvailable(),
+                    formattedDate,
+                    formattedTime
             ));
 
             bufferedWriter.close();
@@ -139,11 +155,12 @@ public class Main {
             // display the sub menu options
             System.out.println("Please enter an option: ");
             System.out.println("1) Display All");
-            System.out.println("2) Display publicly available");
-            System.out.println("3) Search by name");
-            System.out.println("4) Search by type");
-            System.out.println("5) Search by age range");
-            System.out.println("6) Search by origin");
+            System.out.println("2) Display All(Month To Date)");
+            System.out.println("3) Display publicly available");
+            System.out.println("4) Search by name");
+            System.out.println("5) Search by type");
+            System.out.println("6) Search by age range");
+            System.out.println("7) Search by origin");
 
             System.out.println("0) Back");
             System.out.print("Command: ");
@@ -157,18 +174,21 @@ public class Main {
                     displayAll();
                     break;
                 case 2:
-                    displayPubliclyAvailable();
+                    displayAllMonthToDate();
                     break;
                 case 3:
-                    searchByName();
+                    displayPubliclyAvailable();
                     break;
                 case 4:
-                    searchByType();
+                    searchByName();
                     break;
                 case 5:
-                    searchByAgeRange();
+                    searchByType();
                     break;
                 case 6:
+                    searchByAgeRange();
+                    break;
+                case 7:
                     searchByOrigin();
                     break;
                 case 0:
@@ -180,6 +200,26 @@ public class Main {
 
         } while (subMenuCommand != 0);
 
+    }
+
+    public static void displayAllMonthToDate() {
+        LocalDate today = LocalDate.now();
+        int currentMonth = today.getMonthValue();
+        int currentYear = today.getYear();
+
+        for (int i = 0; i < allAnimalsInZoo.size(); i++) {
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String animalArrivalDate = allAnimalsInZoo.get(i).getDateOfArrival();
+
+            LocalDate localDate = LocalDate.parse(animalArrivalDate, dateFormatter);
+
+            int animalArrivalMonth = localDate.getMonthValue();
+            int animalArrivalYear = localDate.getYear();
+
+            if (currentMonth == animalArrivalMonth && currentYear == animalArrivalYear) {
+                System.out.println(allAnimalsInZoo.get(i));
+            }
+        }
     }
 
     public static void displayAll() {

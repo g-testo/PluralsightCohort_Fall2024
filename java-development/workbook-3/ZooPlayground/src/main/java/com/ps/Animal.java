@@ -9,16 +9,22 @@ public class Animal {
     private String origin;
     private boolean isPubliclyAvailable;
 
+    private String dateOfArrival;
+    private String timeOfArrival;
+
     // constructor
-    public Animal(String name, String type, int age, String origin, boolean isPubliclyAvailable) {
+
+
+    public Animal(String name, String type, int age, String origin, boolean isPubliclyAvailable, String dateOfArrival, String timeOfArrival) {
         this.name = name;
         this.type = type;
         this.age = age;
         this.origin = origin;
         this.isPubliclyAvailable = isPubliclyAvailable;
+        this.dateOfArrival = dateOfArrival;
+        this.timeOfArrival = timeOfArrival;
     }
 
-    // Getters & Setters
     public String getName() {
         return name;
     }
@@ -59,8 +65,32 @@ public class Animal {
         isPubliclyAvailable = publiclyAvailable;
     }
 
+    public String getDateOfArrival() {
+        return dateOfArrival;
+    }
+
+    public void setDateOfArrival(String dateOfArrival) {
+        this.dateOfArrival = dateOfArrival;
+    }
+
+    public String getTimeOfArrival() {
+        return timeOfArrival;
+    }
+
+    public void setTimeOfArrival(String timeOfArrival) {
+        this.timeOfArrival = timeOfArrival;
+    }
+
     @Override
     public String toString() {
-        return String.format("Name: %s, Type: %s, Age: %d, Origin: %s, Publicly Available: %b", name, type, age, origin, isPubliclyAvailable);
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", age=" + age +
+                ", origin='" + origin + '\'' +
+                ", isPubliclyAvailable=" + isPubliclyAvailable +
+                ", dateOfArrival='" + dateOfArrival + '\'' +
+                ", timeOfArrival='" + timeOfArrival + '\'' +
+                '}';
     }
 }
