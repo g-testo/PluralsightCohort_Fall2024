@@ -1,20 +1,20 @@
 package com.ps;
 
 public class Room {
-    private int numberOfbeds;
+    private int numberOfBeds;
     private float price;
     private boolean isOccupied;
     private boolean isDirty;
 
-    public Room(int numberOfbeds, float price, boolean isOccupied, boolean isDirty) {
-        this.numberOfbeds = numberOfbeds;
+    public Room(int numberOfBeds, float price) {
+        this.numberOfBeds = numberOfBeds;
         this.price = price;
-        this.isOccupied = isOccupied;
-        this.isDirty = isDirty;
+        this.isOccupied = false;
+        this.isDirty = false;
     }
 
-    public int getNumberOfbeds() {
-        return numberOfbeds;
+    public int getNumberOfBeds() {
+        return numberOfBeds;
     }
 
     public float getPrice() {
@@ -32,4 +32,16 @@ public class Room {
     public boolean isAvailable(){
         return !isOccupied && !isDirty;
     }
+
+    public void checkIn(){
+        this.isOccupied = true;
+        this.isDirty = true;
+    }
+    public void checkout(){
+        this.isOccupied = false;
+    }
+    public void cleanRoom(){
+        this.isDirty = false;
+    }
+
 }
