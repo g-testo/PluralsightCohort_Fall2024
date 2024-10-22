@@ -44,4 +44,36 @@ public class Hotel {
     }
 
 
+    public boolean bookRoom(int numberOfRooms, boolean isSuite){
+        if(isSuite){
+            int suitesAvailable = getAvailableSuites();
+            boolean hasAvailableSuites = suitesAvailable >= numberOfRooms;
+            if(hasAvailableSuites){
+                this.bookedSuites += numberOfRooms;
+            }
+            return hasAvailableSuites;
+        } else {
+            int roomsAvailable = getAvailableRooms();
+            boolean hasAvailableRooms = roomsAvailable >= numberOfRooms;
+            if(hasAvailableRooms){
+                this.bookedRooms += numberOfRooms;
+            }
+            return hasAvailableRooms;
+        }
+    }
+
+    public int getAvailableSuites(){
+        return this.numberOfSuites - this.bookedSuites;
+    }
+    public int getAvailableRooms(){
+        return this.numberOfRooms - this.bookedRooms;
+    }
+
+
+//    // Determine where or not there are available rooms (Return -1), if so how many room
+//    public int calcRoomAvail(int total, int booked){
+//        int available = total - booked;
+//    }
+
+
 }
