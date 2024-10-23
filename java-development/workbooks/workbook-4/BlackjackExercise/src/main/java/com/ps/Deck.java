@@ -19,6 +19,7 @@ public class Deck {
                 cards.add(card);
             }
         }
+        shuffle();
     }
 
     public void shuffle() {

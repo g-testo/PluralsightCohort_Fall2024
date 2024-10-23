@@ -11,7 +11,7 @@ public class Hand {
 
     // A Card is dealt to the Hand and the Hand is responsible
     // to store the card
-    public void Deal(Card card) {
+    public void deal(Card card) {
         cards.add(card);
     }
 
