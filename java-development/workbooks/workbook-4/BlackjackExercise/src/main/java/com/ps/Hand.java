@@ -30,4 +30,10 @@ public class Hand {
         }
         return value;
     }
+
+    public void displayCards(){
+        for(Card card: cards){
+            card.displayCard();
+        }
+    }
 }

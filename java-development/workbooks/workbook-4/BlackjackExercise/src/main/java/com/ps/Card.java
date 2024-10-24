@@ -5,6 +5,10 @@ public class Card {
     private String value;
     private boolean isFaceUp;
 
+    public static final String RESET = "\u001B[0m";
+    public static final String BLACK = "\u001B[30m";
+    public static final String RED = "\u001B[31m";
+
     public Card(String suit, String value) {
         this.suit = suit;
         this.value = value;
@@ -38,7 +42,7 @@ public class Card {
             // A = 11
             // K, Q, J = 10
             // all numeric cards are equal to their face value
-            switch(value){
+            switch (value) {
                 case "A":
                     return 11;
                 case "K":
@@ -59,5 +63,35 @@ public class Card {
 
     public void flip() {
         isFaceUp = !isFaceUp;
+    }
+
+    public void displayCard() {
+        String displaySuit;
+        String displayColor;
+
+        if (suit.equalsIgnoreCase("hearts")) {
+            displaySuit = "♥";
+            displayColor = RED;
+        } else if (suit.equalsIgnoreCase("diamonds")) {
+            displaySuit = "♦";
+            displayColor = RED;
+        } else if (suit.equalsIgnoreCase("spades")) {
+            displaySuit = "♠";
+            displayColor = BLACK;
+        } else if (suit.equalsIgnoreCase("clubs")) {
+            displaySuit = "♣";
+            displayColor = BLACK;
+        } else {
+            displaySuit = "X";
+            displayColor = BLACK;
+        }
+
+        System.out.println(displayColor + "┌─────────┐");
+        System.out.printf("│%s        │\n", value);
+        System.out.println("│         │");
+        System.out.printf("│    %s    │\n", displaySuit);
+        System.out.println("│         │");
+        System.out.printf("│        %s│\n", value);
+        System.out.println("└─────────┘" + RESET);
     }
 }
