@@ -2,16 +2,19 @@ package com.ps;
 
 public class Main {
     public static void main(String[] args) {
-        Deck deck = new Deck();
-        Hand hand1 = new Hand();
-        // deal 5 cards
-        for (int i = 0; i < 5; i++) {
-            // get a card from the deck
-            Card card = deck.deal();
-            // deal that card to the hand
-            hand1.deal(card);
-        }
-        int handValue = hand1.getValue();
-        System.out.println("This hand is worth " + handValue);
+        // Scanner
+
+        // Ask player 1 for name
+        // Ask player 2 for name
+
+        // Play
+            // Display player 1s hand
+            // Display player 2s hand
+            // Display who won
+        // Exit
+
+
+
+
     }
 }
