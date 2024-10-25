@@ -11,7 +11,6 @@ public class UserInterface {
     public static void display(){
         init();
 
-        DealershipFileManager.saveDealership(dealership);
         System.out.println("Load the menu");
         // Load the menu
     }
