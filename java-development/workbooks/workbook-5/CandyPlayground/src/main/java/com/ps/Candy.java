@@ -14,6 +14,12 @@ public class Candy {
     // onSale
     // chocolateLevel
 
+    public Candy(){}
+
+    public Candy(String flavorType, float price){
+        this.flavorType = flavorType;
+        this.price = price;
+    }
 
     public String getFlavorType() {
         return flavorType;

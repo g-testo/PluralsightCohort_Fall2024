@@ -1,4 +1,4 @@
 package com.ps;
 
-public class ReesesCup extends Candy {
+public class ReesesCup extends Candy{
 }
