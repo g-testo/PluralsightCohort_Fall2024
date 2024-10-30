@@ -66,4 +66,16 @@ public abstract class Animal {
     public void setDateLastCleaned(String dateLastCleaned) {
         this.dateLastCleaned = dateLastCleaned;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", species='" + species + '\'' +
+                ", age=" + age +
+                ", habitatStructure='" + habitatStructure + '\'' +
+                ", hasCleanHabitat=" + hasCleanHabitat +
+                ", dateLastCleaned='" + dateLastCleaned + '\'' +
+                "}\n";
+    }
 }

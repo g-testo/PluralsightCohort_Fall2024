@@ -3,8 +3,8 @@ package com.ps;
 public class Axolotl extends Animal {
     private boolean isCurrentlyHealing;
 
-    public Axolotl(String name, String species, int age, String habitatStructure, boolean hasCleanHabitat, String dateLastCleaned, boolean isCurrentlyHealing) {
-        super(name, species, age, habitatStructure, hasCleanHabitat, dateLastCleaned);
+    public Axolotl(String name, int age, String dateLastCleaned, boolean isCurrentlyHealing) {
+        super(name + " the Axolotl", "Amphibian", age, "Tank", true, dateLastCleaned);
         this.isCurrentlyHealing = isCurrentlyHealing;
     }
 

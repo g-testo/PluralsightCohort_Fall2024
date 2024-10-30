@@ -7,13 +7,19 @@ public class Zoo {
     private String address;
     private String phone;
 
-    ArrayList<Animal> animals;
+    private ArrayList<Animal> animals;
 
     public Zoo(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.animals = new ArrayList<>();
+    }
+
+    public void cleanAllHabitats(){
+        for(Animal animal: animals){
+            animal.cleanHabitat();
+        }
     }
 
     // Get all animals (sorted by name)
@@ -52,5 +58,15 @@ public class Zoo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Zoo{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", animals=" + animals +
+                '}';
     }
 }
