@@ -1,5 +1,7 @@
 package com.ps;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Zoo zoo1 = new Zoo("Bronx", "111 Bronx", "555-555-5555");
@@ -14,9 +16,16 @@ public class Main {
         zoo1.addAnimal(animal2);
         zoo1.addAnimal(animal3);
 
-        zoo1.cleanAllHabitats();
+//        zoo1.cleanAllHabitats();
 
-        System.out.println(zoo1);
+//        List<Animal> zooAnimals = zoo1.getAnimalsWithDirtyHabitats();
+//
+//        for(Animal animal: zooAnimals){
+//            System.out.println(animal.getName());
+//        }
+
+        Animal animal = zoo1.findAnimalByName("ab");
+        System.out.println(animal);
 
         // Main
 

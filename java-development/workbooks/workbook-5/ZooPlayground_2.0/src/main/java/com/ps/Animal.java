@@ -1,6 +1,6 @@
 package com.ps;
 
-public abstract class Animal {
+public abstract class Animal implements Comparable<Animal>{
     private String name;
     private String species;
     private int age;
@@ -65,6 +65,11 @@ public abstract class Animal {
 
     public void setDateLastCleaned(String dateLastCleaned) {
         this.dateLastCleaned = dateLastCleaned;
+    }
+
+    @Override
+    public int compareTo(Animal animal){
+        return this.name.compareTo(animal.name);
     }
 
     @Override
