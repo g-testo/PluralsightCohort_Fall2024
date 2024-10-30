@@ -11,12 +11,6 @@ public class Vehicle extends Asset{
         this.year = year;
         this.odometer = odometer;
     }
-
-    @Override
-    public double getValue(){
-        return 0;
-    }
-
     public String getMakeModel() {
         return makeModel;
     }
@@ -39,5 +33,10 @@ public class Vehicle extends Asset{
 
     public void setOdometer(int odometer) {
         this.odometer = odometer;
+    }
+
+    @Override
+    public double getValue() {
+        return 1000.44;
     }
 }

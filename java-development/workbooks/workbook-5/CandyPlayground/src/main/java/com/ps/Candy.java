@@ -1,6 +1,6 @@
 package com.ps;
 
-public class Candy {
+public abstract class Candy {
     private String flavorType;
     private float price;
     // quantityPerPackage
