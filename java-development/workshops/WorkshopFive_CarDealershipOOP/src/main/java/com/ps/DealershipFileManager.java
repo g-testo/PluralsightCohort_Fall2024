@@ -9,7 +9,7 @@ import java.util.List;
 public class DealershipFileManager {
     public static Dealership getDealership(){
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("test.csv"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("inventory.csv"));
 
             String firstLine = bufferedReader.readLine();
             String[] splitDealership = firstLine.split("\\|");
