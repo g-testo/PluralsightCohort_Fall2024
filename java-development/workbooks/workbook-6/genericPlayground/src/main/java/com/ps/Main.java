@@ -1,15 +1,14 @@
 package com.ps;
 
-import java.io.FileReader;
+import com.ps.model.Person;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
+
+        ArrayList<Person> al = new ArrayList<>();
 //        ArrayList<String> tmnt = new ArrayList<>(
 //                Arrays.asList("Leonardo", "Michelangelo", "Donatello", "Raphael", "Master Splinter")
 //        );

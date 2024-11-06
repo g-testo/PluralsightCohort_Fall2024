@@ -1,4 +1,4 @@
-package com.ps;
+package com.ps.model;
 
 public class Person {
     private String firstName;
@@ -11,6 +11,14 @@ public class Person {
         this.lastName = lastName;
         this.age = age;
     }
+
+//    public <T extends Person>T comparePersonAge(T anotherPerson){
+//        if(this.age >= anotherPerson.getAge()){
+//            return (T) this;
+//        } else {
+//            return anotherPerson;
+//        }
+//    }
 
     // Getters
     public String getFirstName() {
