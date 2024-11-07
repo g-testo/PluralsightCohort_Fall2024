@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Trip {
     private List<Ticket> tickets;
-    private List<Souvenir> souvenirs;
+    private List<String> souvenirs;
 
     public void addTicket(Ticket ticket){
         tickets.add(ticket);
     }
-    public void addSouvenir(Souvenir souvenir){
+    public void addSouvenir(String souvenir){
         souvenirs.add(souvenir);
     }
     public void printTripDetails(){
@@ -21,6 +21,7 @@ public class Trip {
     }
 
     public double getPrice(){
+//        TODO: Add all tickets prices to all souvenirs
         return 0;
     }
 }
