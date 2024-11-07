@@ -1,5 +1,8 @@
 package com.ps.customClasses;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChildTicket extends Ticket{
     private double basePrice;
     public ChildTicket(String ownerName, String membership) {
@@ -14,6 +17,15 @@ public class ChildTicket extends Ticket{
     }
 
     public double getPrice(){
-        return this.basePrice;
+        List<Product> products = new ArrayList<>();
+        products.addAll(this.getAddOns());
+        products.addAll(this.getExperiences());
+
+        double totalProductPrice = 0;
+        for(Product product: products){
+            totalProductPrice += product.getPrice(this.getMembership());
+        }
+
+        return this.basePrice + totalProductPrice;
     }
 }
