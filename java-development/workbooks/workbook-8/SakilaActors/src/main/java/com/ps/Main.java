@@ -17,11 +17,11 @@ public class Main {
 
         SakilaDataManager dataManager = new SakilaDataManager(basicDataSource);
 
-//        List<String> names = dataManager.getAllActorNames();
-//        System.out.println(names);
+        List<Actor> names = dataManager.getAllActorNames();
+        System.out.println(names);
 
-        String nameResult = dataManager.getActorById(1);
-        System.out.println(nameResult);
+        Actor actorResult = dataManager.getActorById(1);
+        System.out.println(actorResult.getFirstName());
 
 
 //        System.out.print("Give me a last name of an actor: ");
