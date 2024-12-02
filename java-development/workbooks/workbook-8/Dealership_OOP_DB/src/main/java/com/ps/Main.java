@@ -1,7 +1,13 @@
 package com.ps;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 public class Main {
     public static void main(String[] args) {
+        String username = args[0];
+        String password = args[1];
+
+        UserInterface.display(username, password);
         // Create schema for Vehicles and Dealerships, SQL
         // Create classes(OOP) for Vehicles and Dealerships
 
@@ -16,10 +22,10 @@ public class Main {
         // Exit
 
         // Create a VehicleDAO(Data Access Object) class
-        // - Vehicle getVehicleById(int id)
-        // - List<Vehicles> getAllVehicles()
-        // - void createAVehicle(Vehicle vehicle)
-        // - void updateVehicle(int id, Vehicle vehicle)
-        // - void deleteVehicle(int id)
+        // - Vehicle getById(int id)
+        // - List<Vehicles> getAll()
+        // - void create(Vehicle vehicle)
+        // - void update(int id, Vehicle vehicle)
+        // - void delete(int id)
     }
 }

@@ -1,13 +1,23 @@
 package com.ps;
 
+import com.ps.data.VehicleDAOImpl;
+import com.ps.models.Vehicle;
+import org.apache.commons.dbcp2.BasicDataSource;
+
+import javax.sql.DataSource;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
     private static Scanner scanner = new Scanner(System.in);
+    private static BasicDataSource basicDataSource = new BasicDataSource();
 
     public static void init(){}
 
-    public static void display(){
+    public static void display(String username, String password){
+        basicDataSource.setUrl("jdbc:mysql://localhost:3306/dealership_db");
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
         init();
 
         int mainCommand;
@@ -77,6 +87,7 @@ public class UserInterface {
     }
 
     private static void handleGetVehicle() {
+
         // Show index view of all vehicles
             // 1) 32ouhou3h2oh Honda Accord
         // Ask for a selection number
@@ -85,6 +96,8 @@ public class UserInterface {
     }
 
     private static void handleGetAllVehicles() {
+        VehicleDAOImpl vehicleDAOImpl = new VehicleDAOImpl(basicDataSource);
+        List<Vehicle> vehicles = vehicleDAOImpl.getAll();
         // Get all vehicles from database
         // Display them
     }
