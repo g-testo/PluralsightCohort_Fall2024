@@ -3,7 +3,6 @@ package com.ps;
 public class Main {
     public static void main(String[] args) {
         // Create schema for Vehicles and Dealerships, SQL
-
         // Create classes(OOP) for Vehicles and Dealerships
 
         // Create the CLI User Interface (Vehicle CRUD)
