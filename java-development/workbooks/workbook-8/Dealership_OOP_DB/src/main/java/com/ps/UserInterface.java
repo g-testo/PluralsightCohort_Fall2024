@@ -4,7 +4,6 @@ import com.ps.data.VehicleDAOImpl;
 import com.ps.models.Vehicle;
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import javax.sql.DataSource;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,6 +17,7 @@ public class UserInterface {
         basicDataSource.setUrl("jdbc:mysql://localhost:3306/dealership_db");
         basicDataSource.setUsername(username);
         basicDataSource.setPassword(password);
+
         init();
 
         int mainCommand;
@@ -97,9 +97,11 @@ public class UserInterface {
 
     private static void handleGetAllVehicles() {
         VehicleDAOImpl vehicleDAOImpl = new VehicleDAOImpl(basicDataSource);
-        List<Vehicle> vehicles = vehicleDAOImpl.getAll();
-        // Get all vehicles from database
-        // Display them
+        List<Vehicle> inventory = vehicleDAOImpl.getAll();
+
+        for(Vehicle vehicle: inventory){
+            System.out.println(vehicle);
+        }
     }
 
     private static void handleCreateVehicle() {
