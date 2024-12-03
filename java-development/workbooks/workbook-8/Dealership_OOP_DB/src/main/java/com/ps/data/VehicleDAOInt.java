@@ -5,9 +5,9 @@ import com.ps.models.Vehicle;
 import java.util.List;
 
 public interface VehicleDAOInt {
-    public Vehicle getById(int id);
+    public Vehicle getByVin(String vin);
     public List<Vehicle> getAll();
     public void create(Vehicle vehicle);
-    public void update(int id, Vehicle vehicle);
-    public void delete(int id);
+    public void update(String vin, Vehicle vehicle);
+    public void delete(String vin);
 }

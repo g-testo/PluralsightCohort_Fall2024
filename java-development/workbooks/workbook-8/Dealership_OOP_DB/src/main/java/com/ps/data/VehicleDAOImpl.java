@@ -18,17 +18,32 @@ public class VehicleDAOImpl implements VehicleDAOInt {
     }
 
     @Override
-    public Vehicle getById(int id) {
+    public Vehicle getByVin(String vin) {
+        String query = "SELECT * FROM vehicle WHERE vin = ?;";
+        try(
+            Connection connection = this.dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ){
+            preparedStatement.setString(1, vin);
+            try(
+                ResultSet resultSet = preparedStatement.executeQuery();
+            ){
+                if(resultSet.next()){
+                    return mapVehicle(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public List<Vehicle> getAll() {
         List<Vehicle> vehicles = new ArrayList<>();
-
         String query = "SELECT * FROM vehicle;";
         try (
-                Connection connection = dataSource.getConnection();
+                Connection connection = this.dataSource.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
         ) {
@@ -36,27 +51,75 @@ public class VehicleDAOImpl implements VehicleDAOInt {
                 Vehicle vehicle = mapVehicle(resultSet);
                 vehicles.add(vehicle);
             }
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return vehicles;
     }
 
     @Override
     public void create(Vehicle vehicle) {
-
+        String query = "INSERT INTO vehicle (`vin`, `make`, `model`, `color`, `sold`, `dealership_id`) VALUES(?,?,?,?,?,?)";
+        try(
+            Connection connection = this.dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.setString(1, vehicle.getVin());
+            preparedStatement.setString(2, vehicle.getMake());
+            preparedStatement.setString(3, vehicle.getModel());
+            preparedStatement.setString(4, vehicle.getColor());
+            preparedStatement.setBoolean(5, vehicle.isSold());
+            preparedStatement.setInt(6, vehicle.getDealership_id());
+            int effectedRows = preparedStatement.executeUpdate();
+            if(effectedRows < 1){
+                System.out.println("Error: Vehicle not added");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void update(int id, Vehicle vehicle) {
+    public void update(String vin, Vehicle vehicle) {
+        String query = "UPDATE vehicle SET make=?, model=?, color=?, sold=?, dealership_id=? WHERE vin=?";
 
+        try(
+            Connection connection = this.dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ){
+            preparedStatement.setString(1, vehicle.getMake());
+            preparedStatement.setString(2, vehicle.getModel());
+            preparedStatement.setString(3, vehicle.getColor());
+            preparedStatement.setBoolean(4, vehicle.isSold());
+            preparedStatement.setInt(5, vehicle.getDealership_id());
+            preparedStatement.setString(6, vin);
+
+            int rowsEffected = preparedStatement.executeUpdate();
+
+            if(rowsEffected < 1){
+                System.out.println("Error: Vehicle not updated");
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(String vin) {
+        String query = "DELETE FROM vehicle WHERE vin = ?";
+        try(
+            Connection connection = this.dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ){
+            preparedStatement.setString(1, vin);
+            int effectedRows = preparedStatement.executeUpdate();
+            if(effectedRows < 1){
+                System.out.println("Error: Vehicle not deleted");
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
     private Vehicle mapVehicle(ResultSet resultSet) throws SQLException {

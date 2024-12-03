@@ -3,17 +3,17 @@ package com.ps.models;
 public class Vehicle {
     private String vin;
     private String make;
-    private String mode;
+    private String model;
     private String color;
     private boolean sold;
     private int dealership_id;
 
     public Vehicle() {}
 
-    public Vehicle(String vin, String make, String mode, String color, boolean sold, int dealership_id) {
+    public Vehicle(String vin, String make, String model, String color, boolean sold, int dealership_id) {
         this.vin = vin;
         this.make = make;
-        this.mode = mode;
+        this.model = model;
         this.color = color;
         this.sold = sold;
         this.dealership_id = dealership_id;
@@ -35,12 +35,12 @@ public class Vehicle {
         this.make = make;
     }
 
-    public String getMode() {
-        return mode;
+    public String getModel() {
+        return model;
     }
 
-    public void setMode(String mode) {
-        this.mode = mode;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getColor() {
@@ -72,7 +72,7 @@ public class Vehicle {
         return "Vehicle{" +
                 "vin='" + vin + '\'' +
                 ", make='" + make + '\'' +
-                ", mode='" + mode + '\'' +
+                ", model='" + model + '\'' +
                 ", color='" + color + '\'' +
                 ", sold=" + sold +
                 ", dealership_id=" + dealership_id +

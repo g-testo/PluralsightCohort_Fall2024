@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class UserInterface {
     private static Scanner scanner = new Scanner(System.in);
     private static BasicDataSource basicDataSource = new BasicDataSource();
+    private static VehicleDAOImpl  vehicleDAOImpl = new VehicleDAOImpl(basicDataSource);
+
 
     public static void init(){}
 
@@ -87,16 +89,19 @@ public class UserInterface {
     }
 
     private static void handleGetVehicle() {
-
-        // Show index view of all vehicles
-            // 1) 32ouhou3h2oh Honda Accord
-        // Ask for a selection number
-        // Get vehicle from database
-        // Show vehicle details
+        List<Vehicle> inventory = vehicleDAOImpl.getAll();
+        for(int i=0;i<inventory.size();i++){
+            Vehicle vehicle = inventory.get(i);
+            System.out.printf("%d) %s - %s %s \n", i+1, vehicle.getVin(), vehicle.getMake(), vehicle.getModel());
+        }
+        System.out.print("Please select a vehicle: ");
+        int userSelection = scanner.nextInt();
+        String selectedVehicleVin = inventory.get(userSelection - 1).getVin();
+        Vehicle foundVehicle = vehicleDAOImpl.getByVin(selectedVehicleVin);
+        System.out.println(foundVehicle);
     }
 
     private static void handleGetAllVehicles() {
-        VehicleDAOImpl vehicleDAOImpl = new VehicleDAOImpl(basicDataSource);
         List<Vehicle> inventory = vehicleDAOImpl.getAll();
 
         for(Vehicle vehicle: inventory){
