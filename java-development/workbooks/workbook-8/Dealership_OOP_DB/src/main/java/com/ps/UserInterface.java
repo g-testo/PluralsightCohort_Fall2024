@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class UserInterface {
     private static Scanner scanner = new Scanner(System.in);
+    private static Scanner inputScanner = new Scanner(System.in);
     private static BasicDataSource basicDataSource = new BasicDataSource();
     private static VehicleDAOImpl  vehicleDAOImpl = new VehicleDAOImpl(basicDataSource);
 
@@ -52,8 +53,8 @@ public class UserInterface {
 
         do{
             System.out.println("Manage Vehicles");
-            System.out.println("1) Get a vehicle by id");
-            System.out.println("2) Get all vehicles");
+            System.out.println("1) Display vehicle by VIN");
+            System.out.println("2) Display all vehicles");
             System.out.println("3) Create a vehicle");
             System.out.println("4) Update a vehicle");
             System.out.println("5) Delete a vehicle");
@@ -89,40 +90,74 @@ public class UserInterface {
     }
 
     private static void handleGetVehicle() {
-        List<Vehicle> inventory = vehicleDAOImpl.getAll();
-        for(int i=0;i<inventory.size();i++){
-            Vehicle vehicle = inventory.get(i);
-            System.out.printf("%d) %s - %s %s \n", i+1, vehicle.getVin(), vehicle.getMake(), vehicle.getModel());
-        }
-        System.out.print("Please select a vehicle: ");
-        int userSelection = scanner.nextInt();
-        String selectedVehicleVin = inventory.get(userSelection - 1).getVin();
-        Vehicle foundVehicle = vehicleDAOImpl.getByVin(selectedVehicleVin);
+        printAllVehicles();
+
+        System.out.print("Please enter a vehicle VIN: ");
+        String inputVin = inputScanner.nextLine();
+
+        Vehicle foundVehicle = vehicleDAOImpl.getByVin(inputVin);
+
         System.out.println(foundVehicle);
     }
 
     private static void handleGetAllVehicles() {
-        List<Vehicle> inventory = vehicleDAOImpl.getAll();
-
-        for(Vehicle vehicle: inventory){
-            System.out.println(vehicle);
-        }
+        printAllVehicles();
     }
 
     private static void handleCreateVehicle() {
-        //  Ask the user for all details of the new vehicle
-        //  Send to database to create
+        System.out.println("Please provide vehicle details: ");
+
+        System.out.print("Vin: ");
+        String vin = inputScanner.nextLine();
+
+        Vehicle vehicle = getVehicleDetails();
+        vehicle.setVin(vin);
+
+        vehicleDAOImpl.create(vehicle);
     }
 
     private static void handleUpdateVehicle() {
-        // Ask the user for all change details
-        // Ask the vin of the vehicle to update
-        // Send to database to update
+        System.out.println("Please enter the VIN of the vehicle you would like to update: ");
+        String vin = inputScanner.nextLine();
+
+        Vehicle vehicle = getVehicleDetails();
+
+        vehicleDAOImpl.update(vin, vehicle);
     }
 
     private static void handleDeleteVehicle() {
-        // Ask the user for the vin to delete
-        // Send to database to delete
+        printAllVehicles();
+
+        System.out.print("Please provide vehicle VIN to delete: ");
+        String inputVin = inputScanner.nextLine();
+
+        vehicleDAOImpl.delete(inputVin);
+    }
+
+    private static void printAllVehicles(){
+        List<Vehicle> inventory = vehicleDAOImpl.getAll();
+        for(Vehicle vehicle: inventory){
+            System.out.printf("%s - %s %s \n", vehicle.getVin(), vehicle.getMake(), vehicle.getModel());
+        }
+    }
+
+    private static Vehicle getVehicleDetails(){
+        System.out.print("Make: ");
+        String make = inputScanner.nextLine();
+
+        System.out.print("Model: ");
+        String model = inputScanner.nextLine();
+
+        System.out.print("Color: ");
+        String color = inputScanner.nextLine();
+
+        System.out.print("Sold: ");
+        boolean sold = inputScanner.nextBoolean();
+
+        System.out.println("Dealership Id: ");
+        int dealershipId = inputScanner.nextInt();
+
+        return new Vehicle(null, make, model, color, sold, dealershipId);
     }
 
 }
