@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CustomerDao {
     List<Customer> findAll();
+    Customer findOne(int id);
 }

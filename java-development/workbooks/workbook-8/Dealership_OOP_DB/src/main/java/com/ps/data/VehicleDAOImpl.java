@@ -40,8 +40,8 @@ public class VehicleDAOImpl implements VehicleDAOInt {
 
     @Override
     public List<Vehicle> getAll() {
-        List<Vehicle> vehicles = new ArrayList<>();
         String query = "SELECT * FROM vehicle;";
+        List<Vehicle> vehicles = new ArrayList<>();
         try (
                 Connection connection = this.dataSource.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
