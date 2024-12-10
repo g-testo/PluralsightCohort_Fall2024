@@ -88,6 +88,37 @@ public class MySqlCustomerDao implements CustomerDao {
         return null;
     }
 
+    @Override
+    public void update(int id, Customer customer){
+        String query = "UPDATE customer SET name=?, phone=? WHERE customer_id=?;";
+        try(
+            Connection connection = this.dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+        preparedStatement.setString(1, customer.getName());
+        preparedStatement.setString(2, customer.getPhone());
+        preparedStatement.setInt(3, id);
+
+        preparedStatement.executeUpdate();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void delete(int id){
+        String query = "DELETE FROM customer WHERE customer_id=?;";
+        try(
+            Connection connection = this.dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ){
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     private Customer mapCustomer(ResultSet resultSet) throws SQLException {
         int customerId = resultSet.getInt("customer_id");

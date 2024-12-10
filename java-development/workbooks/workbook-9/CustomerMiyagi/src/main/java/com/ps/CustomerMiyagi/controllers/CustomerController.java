@@ -3,6 +3,7 @@ package com.ps.CustomerMiyagi.controllers;
 import com.ps.CustomerMiyagi.data.CustomerDao;
 import com.ps.CustomerMiyagi.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +35,19 @@ public class CustomerController {
     }
 
     @PostMapping
+    @ResponseStatus(value= HttpStatus.CREATED)
     public Customer postCustomer(@RequestBody Customer customer){
         return dao.create(customer);
+    }
+
+    @PutMapping("{id}")
+    public void putCustomer(@PathVariable int id, @RequestBody Customer customer){
+        dao.update(id, customer);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteCustomer(@PathVariable int id){
+        dao.delete(id);
     }
 
 }
