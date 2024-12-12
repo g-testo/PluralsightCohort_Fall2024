@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>My Website</title>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <main>
+            <h1>Customers & Products Project</h1>
+
+            <form id="product_form">
+                <h2>Product Form</h2>
+                <div>
+                    <input type="text" name="name" placeholder="Name: " />
+                </div>
+                <div>
+                    <input type="number" name="price" step="any" placeholder="Price: " />
+                </div>
+                <div>
+                    <input type="number" name="categoryId" placeholder="Category id: " />
+                </div>
+                <input type="submit" />
+            </form>
+
+            <hr />
+            <ul id="products"></ul>
+        </main>
+
+        <script>
+            window.onload = () => {
+                fetch("http://localhost:8080/api/products")
+                    .then((res) => res.json())
+                    .then((products) => {
+                        let productsUl = document.getElementById("products");
+                        for (let i = 0; i < products.length; i++) {
+                            let productLi = document.createElement("li");
+                            product = products[i];
+                            productLi.innerHTML = product.name + " " + product.price + " " + product.categoryId;
+                            productsUl.append(productLi);
+                        }
+                    });
+
+                let productForm = document.getElementById("product_form");
+                productForm.onsubmit = (e) => {
+                    e.preventDefault();
+                    let inputs = document.getElementsByTagName("input");
+                    let name = inputs[0].value;
+                    let price = inputs[1].value;
+                    let categoryId = inputs[2].value;
+
+                    fetch("http://localhost:8080/api/products", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name,
+                            price,
+                            categoryId,
+                        }),
+                    })
+                        .then((res) => res.json())
+                        .then((res) => {
+                            console.log(res);
+                        });
+                };
+            };
+        </script>
+    </body>
+</html>

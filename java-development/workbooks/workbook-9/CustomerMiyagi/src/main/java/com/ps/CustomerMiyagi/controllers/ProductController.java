@@ -3,14 +3,13 @@ package com.ps.CustomerMiyagi.controllers;
 import com.ps.CustomerMiyagi.data.ProductDao;
 import com.ps.CustomerMiyagi.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("api/products")
 public class ProductController {
 
@@ -22,6 +21,10 @@ public class ProductController {
     }
 
     // Get one
+    @GetMapping("{id}")
+    public Product getProductById(@PathVariable int id){
+        return productDao.findOne(id);
+    }
 
     // Get all
     @GetMapping
@@ -32,9 +35,22 @@ public class ProductController {
     }
 
     // Create
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product createProduct(@RequestBody Product product){
+        return productDao.create(product);
+    }
 
     // Update
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("{id}")
+    public void updateProduct(@PathVariable int id, @RequestBody Product product){
+        productDao.update(id, product);
+    }
     // Delete
+    @DeleteMapping("{id}")
+    public void deleteProduct(@PathVariable int id){
+        productDao.delete(id);
+    }
 
 }

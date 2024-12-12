@@ -1,7 +1,6 @@
 package com.ps.CustomerMiyagi.data.mysql;
 
 import com.ps.CustomerMiyagi.data.ProductDao;
-import com.ps.CustomerMiyagi.models.Customer;
 import com.ps.CustomerMiyagi.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -106,6 +105,26 @@ public class MySqlProductDao implements ProductDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void update(int id, Product product){
+        String query = "UPDATE product SET name=?, price=?, category_id=? WHERE product_id=?;";
+        try(
+                Connection connection = this.dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setFloat(2, product.getPrice());
+            preparedStatement.setInt(3, product.getCategoryId());
+
+            preparedStatement.setInt(4, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
